@@ -120,7 +120,7 @@ namespace openssl
 
     SSL_set_bio(this->m_ssl, this->m_bio_rd, this->m_bio_wr);
     // always-on callbacks
-    m_transport->on_read(8192, {this, &TLS_stream::tls_read});
+    m_transport->on_read(512*1024, {this, &TLS_stream::tls_read});
     m_transport->on_close({this, &TLS_stream::close_callback_once});
 
     // start TLS handshake process
